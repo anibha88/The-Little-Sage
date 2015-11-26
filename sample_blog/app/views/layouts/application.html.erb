@@ -3,12 +3,49 @@
 <head>
   <title>SampleBlog</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="sidebar">
+    <div id="logo">
+      <%= link_to root_path do %>
+        <%= image_tag "my_pic_with_niki.png", size: "100x70"%>
+      <% end %>
+    </div>
+    <ul>
+      <li class="category">Website</li>
+      <li><%= link_to "Blog", root_path %></li>
+      <li>About</li>
+    </ul>
+    <ul>
+      <li class="category">Social</li>
+      <li><a href="https://twitter.com/anibha88">Twitter</a></li>
+      <li><a href="https://www.facebook.com/nithin.bharadhwaj">Facebook</a></li>
+      <li><a href="https://github.com/anibha88">Github</a></li>
+      <li><a href="mailto:anibha88@gmail.com">Email</a></li>
+    </ul>
+    <p class="sign_in">Admin Login</p>
+  </div>
+  <div id="main_content">
+    <div id="header">
+      <p>All Posts</p>
+      <div class="buttons">
+        <button class="button">
+          <%= link_to "New Post", new_post_path %>
+        </button>
+        <button class="button">
+          Logout
+        </button>
+      </div>
+    </div>
+    <% flash.each do |name,msg| %>
+      <%= content_tag(:div, msg, class: "alert") %>
+    <% end %> 
+    <%= yield %>
+  </div>
 
-<%= yield %>
 
 </body>
 </html>
